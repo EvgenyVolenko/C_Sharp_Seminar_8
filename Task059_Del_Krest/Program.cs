@@ -13,7 +13,7 @@
 
 Console.Clear();
 const int m = 3;
-const int n = 5;
+const int n = 8;
 const int LEFTRANGE = 0;
 const int RIGHTRANGE = 10;
 
@@ -23,9 +23,35 @@ FillArray(matrix, LEFTRANGE, RIGHTRANGE);
 PrintArray(matrix);
 (int strokaM, int stolbecM) = FindMin(matrix);
 Console.WriteLine($"Мнимальное значение в массиве = {matrix[strokaM, stolbecM]} в позиции {strokaM} {stolbecM}");
-NewArray(matrix, strokaM, stolbecM);
+NewPrint(matrix, strokaM, stolbecM);
+Console.WriteLine();
+PrintArray(NewArray(matrix, strokaM, stolbecM));
 
-void NewArray(int[,] table, int strD, int stolbD)
+int[,] NewArray(int[,] table, int strD, int stolbD)
+{
+    int[,] res = new int[table.GetLength(0) - 1, table.GetLength(1) - 1];
+    int ii = 0;
+    int jj = 0;
+    for (int i = 0; i < table.GetLength(0); i++)
+    {
+        if (i != strD)
+        {
+            for (int j = 0; j < table.GetLength(1); j++)
+            {
+                if (j != stolbD)
+                {
+                    res[ii, jj] = table[i, j];
+                    jj++;
+                }
+            }
+        jj = 0;
+        ii++;
+        }
+    }
+    return res;
+}
+
+void NewPrint(int[,] table, int strD, int stolbD)
 {
     for (int i = 0; i < table.GetLength(0); i++)
     {
