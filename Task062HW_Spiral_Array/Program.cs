@@ -6,8 +6,8 @@
 // 10 9 8 7
 
 Console.Clear();
-const int n = 4;
-const int cellWidth = 3;
+const int n = 10;
+const int cellWidth = 4;
 
 int[,] matrix = new int[n, n];
 
@@ -18,40 +18,39 @@ void FillArray(int[,] mat)
 {
     int razmer = mat.GetLength(0);
     int a = 1;
-    for (int i = 0; i < razmer; i++) // Переходим по строкам
+    int x = 1;
+    for (int i = razmer; i > 0; i--)
     {
-            mat[0, i] = a;
+        mat[0, razmer - i] = a;
+        a++;
+    }
+    for (int i = 0; i < razmer - 1; i++)
+    {
+        for (int n = x; n < razmer - i; n++)
+        {
+            mat[n, razmer - x] = a;
             a++;
-    }
-    for (int j = 1; j < razmer; j++)
-    {
-        mat[j, 3] = a;
-        a++;
-    }
-    for (int i = 1; i < razmer; i++)
-    {
-        mat[3, razmer - i - 1] = a;
-        a++;
-    }
-    for (int j = 1; j < razmer - 1; j++)
-    {
-        mat[razmer - j - 1, 0] = a;
-        a++;
-    }
-    for (int i = 1; i < razmer - 1; i++)
-    {
-        mat[1, i] = a;
-        a++;
-    }
-     for (int j = 2; j < razmer - 1; j++)
-    {
-        mat[j, 2] = a;
-        a++;
-    }
-    for (int i = 2; i < razmer - 1; i++)
-    {
-        mat[2, razmer - i - 1] = a;
-        a++;
+        }
+
+        for (int n = x; n < razmer - i; n++)
+        {
+            mat[razmer - x, razmer - n - 1] = a;
+            a++;
+        }
+
+         for (int n = x; n < razmer - 1 - i; n++)
+        {
+            mat[razmer - n - 1, x - 1] = a;
+            a++;
+        }
+
+        for (int n = x; n < razmer - 1 - i; n++)
+        {
+             mat[x, n] = a;
+             a++;
+        }
+
+        x++;
     }
 }
 
@@ -61,7 +60,7 @@ void PrintArray(int[,] matr)
     {
         for (int j = 0; j < matr.GetLength(1); j++) // Переходим по столбцам
         {
-            Console.Write($"{matr[i, j], cellWidth}");
+            Console.Write($"{matr[i, j],cellWidth}");
         }
         Console.WriteLine();
     }
