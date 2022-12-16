@@ -17,7 +17,7 @@ const int cellWidth = 3; // количество символов на одну 
 
 FillTriangle();
 // PrintTriangle();
-Console.ReadLine();
+// Console.ReadLine();
 Magic();
 
 void FillTriangle()
@@ -43,8 +43,7 @@ void PrintTriangle()
     {
         for (int j = 0; j < row; j++)
         {
-            if (triangle[i, j] != 0)
-                Console.Write($"{triangle[i, j],cellWidth}");
+            if (triangle[i, j] != 0) Console.Write($"{triangle[i, j],cellWidth}"); // Вывод ненулевых значений массива
         }
         Console.WriteLine();
     }
@@ -58,7 +57,9 @@ void Magic()
         for (int j = 0; j <= i; j++)
         {
             Console.SetCursorPosition(col, i + 1);
-            if (triangle[i, j] != 0) Console.WriteLine($"{triangle[i, j], cellWidth}");
+            if (triangle[i, j] != 0) Console.WriteLine($"{triangle[i, j], cellWidth}"); // Вывод ненулевых значений массива
+            // if (triangle[i, j] != 0) Console.Write("*"); // Вывод * вместо ненулевых значений массива
+            // if (triangle[i, j] % 2 != 0) Console.Write("*"); // Вывод * вместо ненулевых значений массива
             col += cellWidth * 2;
         }
         col = cellWidth * row - cellWidth * (i + 1);

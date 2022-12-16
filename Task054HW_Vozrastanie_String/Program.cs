@@ -14,31 +14,35 @@ const int n = 5;
 const int LEFTRANGE = 0;
 const int RIGHTRANGE = 10;
 
-int[,] matrix = new int [m, n];
+int[,] matrix = new int[m, n];
 
 FillArray(matrix, LEFTRANGE, RIGHTRANGE);
 PrintArray(matrix);
-
+Console.WriteLine();
 DigitsByRange(matrix);
 PrintArray(matrix);
 
 void DigitsByRange(int[,] mas)
 {
-    int temp = mas[0, 0];
     int strok = mas.GetLength(0);
     int stolbcov = mas.GetLength(1);
-       
-    for (int n = 0; n < stolbcov; n++)
-    {   
-        if (mas[0, 0] < temp)
+    int[] tempArr = new int[stolbcov];
+
+    for (int i = 0; i < strok; i++)
+    {
+        for (int j = 0; j < stolbcov; j++)
         {
-            
+            tempArr[j] = mas[i, j];
+        }
+        Array.Sort(tempArr);
+        for (int j = 0; j < stolbcov; j++)
+        {
+            mas[i, j] = tempArr[j];
         }
     }
-    
-}    
+}
 
-void FillArray (int[,] mat, int leftRange, int rightRange)
+void FillArray(int[,] mat, int leftRange, int rightRange)
 {
     Random rand = new Random();
     for (int i = 0; i < mat.GetLength(0); i++) // Переходим по строкам
