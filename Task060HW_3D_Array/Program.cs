@@ -6,11 +6,11 @@
 
 Console.Clear();
 
-int[] digits = { 12, 13, 14, 15, 18, 20, 36, 35 };
-int[,,] array3D = CreateMatrix(digits, 2, 2, 2);
+int[] digits = {12, 13, 14, 15, 18, 20, 36, 35};
+int[,,] array3D = FillArray3(digits, 2, 2, 2);
 PrintMatrix(array3D);
 
-int[,,] CreateMatrix(int[] colection, int row, int col, int dep)
+int[,,] FillArray3(int[] colection, int row, int col, int dep)
 {
     int[,,] matrix = new int[row, col, dep];
     int n = 0;
